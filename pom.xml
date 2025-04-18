@@ -43,6 +43,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-security</artifactId>
 			</dependency>
+			
 
 			<!-- Test Dependencies -->
 			<dependency>
@@ -70,10 +71,11 @@
 				<optional>true</optional>
 			</dependency>
 			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<optional>true</optional>
-			</dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.28</version> <!-- Use the latest version -->
+    <scope>provided</scope>
+</dependency>
 			<dependency>
 				<groupId>com.h2database</groupId>
 				<artifactId>h2</artifactId>
@@ -87,8 +89,18 @@
 			<dependency>
         		<groupId>jakarta.persistence</groupId>
         		<artifactId>jakarta.persistence-api</artifactId>
-        	<version>3.1.0</version>
-    </dependency>
+        		<version>3.1.0</version>
+    		</dependency>
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>8.0.0.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish</groupId>
+				<artifactId>jakarta.el</artifactId>
+				<version>4.0.2</version>
+			</dependency>
 	</dependencies>
 
 	<build>

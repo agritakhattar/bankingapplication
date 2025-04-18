@@ -27,7 +27,7 @@ public class TransactionController {
     )
     @ApiResponses({
             @ApiResponse(
-                    responseCode = "200",
+                    responseCode = "201", // Updated from 200 to 201
                     description = "Transaction created successfully",
                     content = @Content(schema = @Schema(implementation = Transaction.class))
             ),
@@ -45,7 +45,7 @@ public class TransactionController {
     ) {
         transaction.setId(1L);
         transaction.setDate(new Date());
-        return ResponseEntity.ok(transaction);
+        return ResponseEntity.status(201).body(transaction); // Status code 201 for resource creation
     }
 
     @Operation(
