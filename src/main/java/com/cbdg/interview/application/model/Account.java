@@ -1,20 +1,25 @@
 package com.cbdg.interview.application.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Schema(description = "Bank account details")
 @Data
+@Entity
 public class Account {
-    @Schema(description = "Unique account identifier")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    @Schema(description = "Bank account number", example = "123456789")
     private String bankAccountNumber;
 
-    @Schema(description = "Type of account", example = "Savings")
     private String accountType;
-    @Schema(description = "Current balance", example = "1000.00")
+
     private Double balance;
 
     public Account(Long accountId, String number, String accountType, double balance) {
@@ -22,6 +27,9 @@ public class Account {
         this.bankAccountNumber = number;
         this.accountType = accountType;
         this.balance = balance;
+    }
 
+    public Account() {
+        // Default constructor for JPA
     }
 }

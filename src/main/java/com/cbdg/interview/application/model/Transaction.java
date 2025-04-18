@@ -1,38 +1,36 @@
 package com.cbdg.interview.application.model;
 
+import jakarta.persistence.*;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import java.util.Date;
+import java.util.Date; // Add this import
 
-@Schema(
-    description = "Transaction details",
-    requiredProperties = {"transactionType", "amount", "description"}
-)
-@Getter
-@Setter
+@Data
+@Entity
+@Schema(description = "Details of a bank transaction")
 public class Transaction {
-    @Schema(description = "Unique transaction identifier")
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    @Schema(description = "Type of transaction (credit/debit)", example = "credit")
-    private String transactionType;
-
-    @Schema(description = "Transaction amount", example = "100.00")
+        private String type;
     private Double amount;
-
-    @Schema(description = "Transaction description", example = "Grocery shopping")
     private String description;
-
-    @Schema(description = "Transaction date")
     private Date date;
 
-    public Transaction(Long id, String transactionType, double amount, String description, Date date) {
+    @ManyToOne
+        private Account account;
+
+    public Transaction(Long id, String type, Double amount, String description, Date date) {
         this.id = id;
-        this.transactionType = transactionType;
+        this.type = type;
         this.amount = amount;
         this.description = description;
         this.date = date;
+    }
+
+    public Transaction() {
+        // Default constructor for JPA
     }
 }
